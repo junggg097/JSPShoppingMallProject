@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=utf-8" %>
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -23,12 +24,17 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="text-center">
+		<div class=" text-center">
 			<h3>
 				<%=tagline %>
 			</h3>
 		</div>
 	</div>
+	<%
+		response.setIntHeader("Refresh", 5);
+	%>
+	<p> <%=(new java.util.Date())%>
+	<p> 이 페이지는 5초마다 갱신 됩니다.
 	<footer class="container">
 		<p>&copy; WebMarket</p>
 	</footer>
