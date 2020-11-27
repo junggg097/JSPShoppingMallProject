@@ -2,11 +2,19 @@ package dao;
 
 import java.util.ArrayList;
 
+import javax.websocket.OnOpen;
+
 import dto.Product;
 
 public class ProductRepository {
 	
 	private ArrayList<Product> listOfProducts = new ArrayList<Product>();
+	private static ProductRepository instance = new ProductRepository();
+	
+	public static ProductRepository getInstance() {
+		return instance;
+	}
+	
 	
 	public ProductRepository() {
 		
@@ -16,20 +24,24 @@ public class ProductRepository {
 		phone.setManufacturer("Apple");
 		phone.setUnitsInStock(1000);
 		phone.setCondition("New");
+		//phone.setFilename("api43.jpg");
 		
 		Product notebook = new Product("P1234", "LG PC ±×·¥", 1500000);
-		phone.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
-		phone.setCategory("Notebook");
-		phone.setManufacturer("LG");
-		phone.setUnitsInStock(1000);
-		phone.setCondition("Refurbished");
+		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
+		notebook.setCategory("Notebook");
+		notebook.setManufacturer("LG");
+		notebook.setUnitsInStock(1000);
+		notebook.setCondition("Refurbished");
+		//notebook.setFilename("nougat.png");
+		
 		
 		Product tablet = new Product("P1236", "Galaxy Tab S", 9000000);
-		phone.setDescription("212.8*125.6*6.6mm, Super AMOLED display, Octa-Core processor");
-		phone.setCategory("Tablet");
-		phone.setManufacturer("Samsung");
-		phone.setUnitsInStock(1000);
-		phone.setCondition("Old");
+		tablet.setDescription("212.8*125.6*6.6mm, Super AMOLED display, Octa-Core processor");
+		tablet.setCategory("Tablet");
+		tablet.setManufacturer("Samsung");
+		tablet.setUnitsInStock(1000);
+		tablet.setCondition("Old");
+		//tablet.setFilename("oreo.png");
 		
 		listOfProducts.add(phone);
 		listOfProducts.add(notebook);
@@ -52,4 +64,9 @@ public class ProductRepository {
 		}
 		return productById;
 	}
+	
+	public void addProduct(Product product) {
+		listOfProducts.add(product);
+	}
+	
 }
