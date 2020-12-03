@@ -1,42 +1,53 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ page import="java.util.Date" %>
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<title>Welcome</title>
+<head>
+<link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<title>WelCome</title>
 </head>
 <body>
-	<nav class="navbar navbar-expend  navbar-dark bg-dark">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="./welcome.jsp">Home</a>
-			</div>
-		</div>
-	</nav>
+<%@ include file="menu.jsp" %>
 	<%!
-		String greeting = "Welcome to Web Shopping Mall";
+		String greeting = "웹 쇼핑몰에 오신 것을 환영합니다.";
 		String tagline = "Welcome to Web Market!";
 	%>
 	<div class="jumbotron">
-		<div class="container">
+		<div class = "container">
 			<h1 class="display-3">
-				<%=greeting %>
+				<%=greeting%>
 			</h1>
 		</div>
 	</div>
 	<div class="container">
-		<div class=" text-center">
+		<div class = "text-center">
 			<h3>
-				<%=tagline %>
+				<%=tagline%>
 			</h3>
+			<%
+			Date day = new java.util.Date();
+			String am_pm;
+			int h = day.getHours();
+			int m = day.getMinutes();
+			int s = day.getSeconds();
+			if(h <= 12){
+				am_pm = "AM";
+			}
+			else{
+				am_pm = "PM";
+				h=h-12;
+			}
+			String CT =h + ":" + m + ":" + s + " " + am_pm;
+			out.println("현재 접속 시각: " + CT + "\n");
+			%>	
+			<%
+				response.setIntHeader("Refresh", 5);
+			%>
+		
 		</div>
+		<hr>
 	</div>
-	<%
-		response.setIntHeader("Refresh", 5);
-	%>
-	<p> <%=(new java.util.Date())%>
-	<p> 이 페이지는 5초마다 갱신 됩니다.
-	<footer class="container">
-		<p>&copy; WebMarket</p>
-	</footer>
-	</body>
-	</html>
+	<%@ include file="footer.jsp" %>
+</body>
+</html>
